@@ -38,6 +38,9 @@ io.on("connection", (socket) => {
     for (const [key, value] of Object.entries(data)) {
       positions[socket.id][key] = value;
     }
+
+    if (data.winner && gameStatus == 1) gameStatus = 0;
+
     //console.log(positions);
   });
 
@@ -53,7 +56,7 @@ io.on("connection", (socket) => {
 
     positions[prop].infected = true;
   });
-
+  /*
   socket.on("endGame", () => {
     if (gameStatus == 1) {
       console.log("Game Over");
@@ -61,6 +64,7 @@ io.on("connection", (socket) => {
       gameStatus = 0;
     }
   });
+  */
 });
 
 function reset() {
